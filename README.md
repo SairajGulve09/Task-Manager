@@ -1,5 +1,20 @@
 # Task-Manager
-To run the program: npm start
+
+# Installation and Setup
+
+ Install Nodejs:
+	https://nodejs.org/en/
+
+Check for Nodejs:
+	node -v
+
+Add required files:
+	npm install react-router-dom
+
+To run the Program:
+	npm start
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Task Management Application using React that allows users to
 1) Add
