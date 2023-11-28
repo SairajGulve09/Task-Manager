@@ -101,6 +101,15 @@ body {
     transform: translateY(-50%);
     pointer-events: none;
   }
+
+  .delete-button{
+    background-color: red;
+  }
+
+  span{
+    font-size:20px;
+    
+  }
   
   /* Responsive Styles */
   @media screen and (max-width: 600px) {

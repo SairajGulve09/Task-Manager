@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './style.css';
+
 const EditTask = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -13,9 +14,14 @@ const EditTask = () => {
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const selectedTask = storedTasks.find((t) => t.id === parseInt(id, 10)) || task;
+    const selectedTask = storedTasks.find((t) => t.id === parseInt(id, 10)) || {
+      name: '',
+      description: '',
+      priority: 'low',
+      completed: false,
+    };
     setTask(selectedTask);
-  }, [id, task]);
+  }, [id]);
 
   const handleEditTask = () => {
     const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];

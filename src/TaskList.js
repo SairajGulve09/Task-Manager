@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
+
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch tasks from LocalStorage on component mount
   useEffect(() => {
@@ -26,8 +28,12 @@ const TaskList = () => {
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
+  // Handle navigation to edit page
+  const handleEdit = (taskId) => {
+    navigate(`/edit/${taskId}`);
+  };
+
   return (
-    
     <div className='container'>
       <h2>Task List</h2>
       <ul>
@@ -38,19 +44,21 @@ const TaskList = () => {
               checked={task.completed}
               onChange={() => handleComplete(task.id)}
             />
-            
             <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
               {task.name}
             </span>
-            
-            <button onClick={() => handleDelete(task.id)}>Delete</button>
-            <Link to={`/edit/${task.id}`}>Edit</Link>
-           
+            <button className="delete-button" onClick={() => handleDelete(task.id)}>
+              Delete
+            </button>
+            <button className="edit-button" onClick={() => handleEdit(task.id)}>
+              Edit
+            </button>
           </li>
         ))}
       </ul>
-      
-      <Link to="/add">Add Task</Link>
+      <button className="add-button" onClick={() => navigate("/add")}>
+        Add Task
+      </button>
     </div>
   );
 };
